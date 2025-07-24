@@ -19,7 +19,7 @@ projects:
 components:
   - name: tools
     container:
-      image: quay.io/devfile/universal-developer-image:ubi9-latest
+      image: quay.io/devfile/universal-developer-image:ubi8-latest
       memoryLimit: 4.7G
       mountSources: true
     attributes:
@@ -45,7 +45,7 @@ components:
         - 99d
       env:
         - name: TENABLE_API_URL
-          value: 'https://us.app.ermetic.com'
+          value: https://us.app.ermetic.com
         - name: TENABLE_SKIP_SEND_RESULTS
           value: 'true'
 
