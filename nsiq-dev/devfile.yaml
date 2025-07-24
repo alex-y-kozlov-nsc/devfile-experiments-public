@@ -3,17 +3,17 @@ metadata:
   name: nsiq-dev
 projects:
   - name: nsiq-core
-    clonePath: nsiq
+    clonePath: nsiq-core
     git:
       remotes:
-        origin: /github.com/Norfolk-Southern/devsecops-fork-nsiq-core.git
+        origin: https://github.com/Norfolk-Southern/devsecops-fork-nsiq-core.git
       checkoutFrom:
         revision: develop
   - name: nsiq-rag
-    clonePath: nsiq
+    clonePath: nsiq-rag
     git:
       remotes:
-        origin: /github.com/Norfolk-Southern/devsecops-fork-nsiq-rag.git
+        origin: https://github.com/Norfolk-Southern/devsecops-fork-nsiq-rag.git
       checkoutFrom:
         revision: develop
 components:
