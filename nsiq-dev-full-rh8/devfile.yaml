@@ -1,6 +1,6 @@
 schemaVersion: 2.2.2
 metadata:
-  name: nsiq-dev-rh8
+  name: nsiq-dev-full-rh8
 projects:
   - name: nsiq-core
     clonePath: nsiq-core
