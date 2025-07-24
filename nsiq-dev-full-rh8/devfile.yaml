@@ -17,6 +17,7 @@ projects:
       checkoutFrom:
         revision: develop
 components:
+
   - name: tools
     container:
       image: quay.io/devfile/universal-developer-image:ubi8-latest
@@ -48,6 +49,16 @@ components:
           value: https://us.app.ermetic.com
         - name: TENABLE_SKIP_SEND_RESULTS
           value: 'true'
+  - name: tf
+    attributes:
+      container-overrides:
+        imagePullPolicy: IfNotPresent    
+    container:
+      image: hashicorp/terraform:1.12
+      command:
+        - sleep
+      args:
+        - 99d
   - name: mongo
     container:
       image: bitnami/mongodb:8.0.8
