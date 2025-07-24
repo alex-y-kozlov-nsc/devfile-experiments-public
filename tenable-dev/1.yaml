@@ -1,0 +1,35 @@
+schemaVersion: 2.2.2
+metadata:
+  name: tenable-dev
+projects:
+  - name: openshift-jenkins-pipelines
+    clonePath: openshift-jenkins-pipelines
+    git:
+      remotes:
+        origin: https://github.com/Norfolk-Southern/openshift-jenkins-pipelines.git
+      checkoutFrom:
+        revision: podtemplate
+components:
+  - attributes:
+      container-overrides:
+        imagePullPolicy: IfNotPresent
+    name: tools
+    container:
+      image: quay.io/devfile/universal-developer-image:ubi8-latest
+      memoryLimit: 4.7G
+      mountSources: true
+  - attributes:
+      container-overrides:
+        imagePullPolicy: IfNotPresent
+    name: tenable
+    container:
+      image: nsos-pr1-nex.atldc.nscorp.com:8083/tenable/cloud-security-scanner
+      command:
+        - sleep
+      args:
+        - 99d
+      env:
+        - name: TENABLE_API_URL
+          value: https://us.app.ermetic.com
+        - name: TENABLE_SKIP_SEND_RESULTS
+          value: 'true'
