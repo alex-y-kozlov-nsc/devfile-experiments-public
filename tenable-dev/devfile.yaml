@@ -15,13 +15,8 @@ components:
       image: quay.io/devfile/universal-developer-image:ubi8-latest
       memoryLimit: 4.7G
       mountSources: true
-    attributes:
-      container-overrides:
-        imagePullPolicy: IfNotPresent
   - name: tenable
-    attributes:
-      container-overrides:
-        imagePullPolicy: IfNotPresent    
+
     container:
       image: nsos-pr1-nex.atldc.nscorp.com:8083/tenable/cloud-security-scanner
       command:
@@ -30,7 +25,7 @@ components:
         - 99d
       env:
         - name: TENABLE_API_URL
-          value: 'https://us.app.ermetic.com'
+          value: https://us.app.ermetic.com
         - name: TENABLE_SKIP_SEND_RESULTS
           value: 'true'
 
