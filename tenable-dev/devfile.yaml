@@ -31,7 +31,6 @@ components:
       volumeMounts:
         - name: tenable-analysis
           path: /app/.workload_analysis
-          
 
   - name: tenable-analysis
     volume:

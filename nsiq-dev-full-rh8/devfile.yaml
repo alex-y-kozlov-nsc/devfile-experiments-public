@@ -37,7 +37,13 @@ components:
   - name: tenable
     attributes:
       container-overrides:
-        imagePullPolicy: IfNotPresent    
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          runAsUser: 0
+          runAsGroup: 0
+          fsGroup: 0    
+          #privileged: true
+          #allowPrivilegeEscalation: true
     container:
       image: nsos-pr1-nex.atldc.nscorp.com:8083/tenable/cloud-security-scanner
       command:
@@ -49,6 +55,10 @@ components:
           value: https://us.app.ermetic.com
         - name: TENABLE_SKIP_SEND_RESULTS
           value: 'true'
+      mountSources: true
+      volumeMounts:
+        - name: tenable-analysis
+          path: /app/.workload_analysis
   - name: tf
     attributes:
       container-overrides:
@@ -82,7 +92,9 @@ components:
       volumeMounts:
         - name: mongo-storage
           path: /bitnami/mongodb
-
+  - name: tenable-analysis
+    volume:
+      size: 2048Mi
   - name: mongo-storage
     volume:
       size: 256Mi
