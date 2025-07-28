@@ -27,4 +27,13 @@ components:
           value: https://us.app.ermetic.com
         - name: TENABLE_SKIP_SEND_RESULTS
           value: 'true'
+      mountSources: true
+      volumeMounts:
+        - name: tenable-analysis
+          path: /app/.workload_analysis
+          
+
+  - name: tenable-analysis
+    volume:
+      size: 2048Mi
 
