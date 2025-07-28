@@ -63,29 +63,30 @@ components:
         - sleep
       args:
         - 99d
-  - name: mongo
-    container:
-      image: bitnami/mongodb:8.0.8
-      env:
-        - name: MONGODB_USERNAME
-          value: user
-        - name: MONGODB_PASSWORD
-          value: password
-        - name: MONGODB_DATABASE
-          value: nsiq
-        - name: MONGODB_ROOT_PASSWORD
-          value: password
-      endpoints:
-        - name: mongodb
-          exposure: internal
-          targetPort: 27017
-          attributes:
-            discoverable: 'true'
-      memoryLimit: 512Mi
-      mountSources: true
-      volumeMounts:
-        - name: mongo-storage
-          path: /bitnami/mongodb
+#  - name: mongo
+#    container:
+#      image: bitnami/mongodb:8.0.8
+#      env:
+#        - name: MONGODB_USERNAME
+#          value: user
+#        - name: MONGODB_PASSWORD
+#          value: password
+#        - name: MONGODB_DATABASE
+#          value: nsiq
+#        - name: MONGODB_ROOT_PASSWORD
+#          value: password
+#      endpoints:
+#        - name: mongodb
+#         exposure: internal
+#          targetPort: 27017
+#          attributes:
+#            discoverable: 'true'
+#      memoryLimit: 512Mi
+#      mountSources: true
+#      volumeMounts:
+#        - name: mongo-storage
+#          path: /bitnami/mongodb
+
   - name: tenable-analysis
     volume:
       size: 2048Mi
