@@ -1,0 +1,94 @@
+schemaVersion: 2.2.2
+metadata:
+  name: nsiq-dev-root-rh8
+projects:
+  - name: nsiq-core
+    clonePath: nsiq-core
+    git:
+      remotes:
+        origin: https://github.com/Norfolk-Southern/devsecops-fork-nsiq-core.git
+      checkoutFrom:
+        revision: develop
+  - name: nsiq-rag
+    clonePath: nsiq-rag
+    git:
+      remotes:
+        origin: https://github.com/Norfolk-Southern/devsecops-fork-nsiq-rag.git
+      checkoutFrom:
+        revision: develop
+components:
+
+  - name: tools
+    container:
+      image: quay.io/devfile/universal-developer-image:ubi8-latest
+      memoryLimit: 4.7G
+      mountSources: true
+    attributes:
+      container-overrides:
+        imagePullPolicy: IfNotPresent
+  - name: api-wrapper-java-cmd
+    container:
+      image: nsos-pr1-nex.atldc.nscorp.com:8083/veracode/api-wrapper-java:24.10.15.0
+      command: ['tail']
+      args: ['-f', '/dev/null']
+    attributes:
+      container-overrides:
+        imagePullPolicy: IfNotPresent
+  - name: tenable
+    attributes:
+      container-overrides:
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          runAsUser: 0
+          runAsGroup: 0
+          fsGroup: 0    
+          #privileged: true
+          #allowPrivilegeEscalation: true
+    container:
+      image: nsos-pr1-nex.atldc.nscorp.com:8083/tenable/cloud-security-scanner
+      command:
+        - sleep
+      args:
+        - 99d
+      env:
+        - name: TENABLE_API_URL
+          value: https://us.app.ermetic.com
+        - name: TENABLE_SKIP_SEND_RESULTS
+          value: 'true'
+  - name: tf
+    attributes:
+      container-overrides:
+        imagePullPolicy: IfNotPresent    
+    container:
+      image: hashicorp/terraform:1.12
+      command:
+        - sleep
+      args:
+        - 99d
+  - name: mongo
+    container:
+      image: bitnami/mongodb:8.0.8
+      env:
+        - name: MONGODB_USERNAME
+          value: user
+        - name: MONGODB_PASSWORD
+          value: password
+        - name: MONGODB_DATABASE
+          value: nsiq
+        - name: MONGODB_ROOT_PASSWORD
+          value: password
+      endpoints:
+        - name: mongodb
+          exposure: internal
+          targetPort: 27017
+          attributes:
+            discoverable: 'true'
+      memoryLimit: 512Mi
+      mountSources: true
+      volumeMounts:
+        - name: mongo-storage
+          path: /bitnami/mongodb
+
+  - name: mongo-storage
+    volume:
+      size: 256Mi
