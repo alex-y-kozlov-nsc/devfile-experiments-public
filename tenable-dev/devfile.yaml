@@ -16,6 +16,13 @@ components:
       memoryLimit: 4.7G
       mountSources: true
   - name: tenable
+    attributes:
+      container-overrides:
+        imagePullPolicy: IfNotPresent
+        securityContext:
+          runAsUser: 0
+          runAsGroup: 0
+          fsGroup: 0    
     container:
       image: nsos-pr1-nex.atldc.nscorp.com:8083/tenable/cloud-security-scanner
       command:
