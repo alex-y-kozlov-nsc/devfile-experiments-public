@@ -18,7 +18,8 @@ components:
   - name: tenable  
     container:
       image: tenable/cloud-security-scanner
-      memoryLimit: 4.7G
+      memoryRequest: 4G
+      memoryLimit: 4G
       command:
         - sleep
       args:
