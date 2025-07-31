@@ -40,6 +40,8 @@ components:
         imagePullPolicy: IfNotPresent
     container:
       image: tenable/cloud-security-scanner
+      memoryRequest: 4G
+      memoryLimit: 4G
       command:
         - sleep
       args:
@@ -60,6 +62,16 @@ components:
     container:
       image: hashicorp/terraform:1.12
       command:
+        - sleep
+      args:
+        - 99d
+  - name: sonar
+    attributes:
+      container-overrides:
+        imagePullPolicy: IfNotPresent
+    container:      
+      image: nsos-pr1-nex.atldc.nscorp.com:8083/sonarqube/sonar-scanner-cli:11.3
+      command: 
         - sleep
       args:
         - 99d
