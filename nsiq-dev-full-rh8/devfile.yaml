@@ -71,6 +71,8 @@ components:
         imagePullPolicy: IfNotPresent
     container:      
       image: nsos-pr1-nex.atldc.nscorp.com:8083/sonarqube/sonar-scanner-cli:11.3
+      memoryRequest: 256Mi
+      memoryLimit: 2Gi
       command: 
         - sleep
       args:

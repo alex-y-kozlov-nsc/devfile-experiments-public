@@ -15,5 +15,5 @@ path to devfile: `nsiq-dev-rh9/devfile.yaml`
 URL: `https://github.com/alex-y-kozlov-nsc/devfile-experiments-public/tree/main?devfilePath=nsiq-dev-rh9/devfile.yaml`
 
 4. tenable-dev
-path to devfile: `nsiq-dev-rh9/devfile.yaml`
-URL: `https://github.com/alex-y-kozlov-nsc/devfile-experiments-public/tree/main?devfilePath=nsiq-dev-rh8/devfile.yaml`
+path to devfile: `tenable-dev/devfile.yaml`
+URL: `https://github.com/alex-y-kozlov-nsc/devfile-experiments-public/tree/main?devfilePath=tenable-dev/devfile.yaml`
